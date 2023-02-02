@@ -1,0 +1,122 @@
+body {
+    display:block;
+    margin: 8px;
+    background: #413F54;
+}
+
+div {
+    display: block;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+#cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+}
+
+#consoleDiv{
+  float:left;
+  background:#30292F;
+  width:100%;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+
+}
+
+p.console {
+    font-family: "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
+    font-size: 12;
+    color: white;
+    margin-top: 0;
+}
+
+p.consoleOld {
+    font-family: "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
+    font-size: 12;
+    color: grey;
+    margin-bottom: 0;
+}
+
+.pulsate {
+    -webkit-animation: pulsate .5s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 0.0;
+}
+
+@keyframes pulsate{
+
+  0% {
+      opacity: 0.0;
+  }
+  50% {
+      opacity: 1.0;
+  }
+  100% {
+      opacity: 0.0;
+  }
+
+}
+
+.infoDiv {
+
+    top: 8;
+    right: 8;
+    z-index: 1;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    text-align: right;
+    float:right;
+}
+
+.centertext{
+
+  width:100%;
+  text-align: center;
+
+}
+
+.playertext{
+
+  font-size: 0.85rem;
+
+}
+
+.whitetext{
+  color:white;
+}
+
+.HalfWidth{
+
+  width:50%;
+  float:left;
+
+}
+
+#firstColumn {
+    float: left;
+    width: 275px;
+}
+
+#secondColumn {
+    float: left;
+    width: 275px;
+    margin-left:10px;
+}
