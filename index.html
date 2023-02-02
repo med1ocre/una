@@ -80,6 +80,7 @@
 
 
             </p>
+
           </div>
 
           <div class="HalfWidth">
@@ -91,30 +92,35 @@
               <br>
               <span id="LightRes"></span>: Light res
               <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
 
             </p>
           </div>
 
   			</div>
 
-
-  		</div>
-
-      <div id="secondColumn" class="whitetext">
-
-  			<br>
-  			<br>
-  			<div id="battleDiv">
+        <div id="battleDiv">
   				<b>Battle</b>
   				<br>
   				<hr>
-  				<p class="battletext">
+  				<p class="battletext noselect" style="text-align:center;vertical-align:center;">
 
+            <button id="StartCombat"style="width:100%;border:none;" onclick="toggleZones()">Zones</button>
 
+            <button id="ZoneOne" class="ZoneButton" style="" onclick="startCombat()">&#8544;</button>
+            <button id="ZoneTwo" class="ZoneButton" onclick="startCombat()" disabled>&#8545;</button>
+            <button id="ZoneThree" class="ZoneButton" onclick="startCombat()" disabled>&#8546;</button>
+            <button id="ZoneFour" class="ZoneButton" onclick="startCombat()" disabled>&#8547;</button>
+            <button id="ZoneFive" class="ZoneButton" onclick="startCombat()" disabled>&#8548;</button>
 
+            <img id="ActiveEnemy" src=""></img>
 
   			</div>
-
 
   		</div>
 
