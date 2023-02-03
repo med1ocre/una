@@ -102,17 +102,29 @@
   				<b>Battle</b>
   				<br>
   				<hr>
-  				<p class="battletext noselect" style="text-align:center;vertical-align:center;">
+  				<p class="battletext noselect centertext" style="text-align:center;vertical-align:center;">
 
-            <button id="StartCombat"style="width:100%;border:none;" onclick="toggleZones()">Zones</button>
+            <button id="StartCombat"  style="width:100%;border:none;" onclick="toggleZones()">Zones</button>
 
-            <button id="ZoneOne" class="ZoneButton" style="" onclick="startCombat()" aria-describedby="tooltip">&#8544;</button>
+            <button id="ZoneOne" class="ZoneButton" style="" onclick="selectZone(1)" aria-describedby="tooltip">&#8544;</button>
             <button id="ZoneTwo" class="ZoneButton" onclick="startCombat()" disabled>&#8545;</button>
             <button id="ZoneThree" class="ZoneButton" onclick="startCombat()" disabled>&#8546;</button>
             <button id="ZoneFour" class="ZoneButton" onclick="startCombat()" disabled>&#8547;</button>
             <button id="ZoneFive" class="ZoneButton" onclick="startCombat()" disabled>&#8548;</button>
 
-            <img id="ActiveEnemy" src=""></img>
+            <img id="ActiveEnemyImg" src=""></img>
+
+            <div class="centertext" id="EnemyContent">
+              <span id="EnemyName"></span>
+              <br>
+              <progress id="EnemyHealthBar" value="5" max="10"></progress>
+              <br>
+              <span id="EnemyCurrentHealth"></span>/<span id="EnemyMaxHealth"></span>
+            </div>
+
+            <br>
+
+
 
   			</div>
 
@@ -121,9 +133,9 @@
   	</div>
 
 
-    <!-- Modal -->
+    <!-- Landing Page Modal -->
     <div class="modal fade" id="landingModal" tabindex="-1" role="dialog" aria-labelledby="landingModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="landingModalLabel">Una | v0.0.1</h5>
@@ -134,9 +146,65 @@
             &#x2022; Started Development
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Sign Up</button>
-            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Log In</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="triggerModal(2)">Sign up</button>
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="triggerModal(3)">Login</button>
             <button type="button" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Signup Page Modal -->
+    <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+          </div>
+          <div class="modal-body mx-3">
+            <div class="md-form mb-5">
+              <i class="fas fa-user prefix grey-text"></i>
+              <input type="text" id="orangeForm-name" class="form-control validate">
+              <label data-error="wrong" data-success="right" for="orangeForm-name">Username</label>
+            </div>
+
+            <div class="md-form mb-4">
+              <i class="fas fa-lock prefix grey-text"></i>
+              <input type="password" id="orangeForm-pass" class="form-control validate">
+              <label data-error="wrong" data-success="right" for="orangeForm-pass">Password</label>
+            </div>
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-deep-orange" style="background-color:lightgray;">Sign up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login Page Modal -->
+    <div class="modal fade" id="logInModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Log in</h4>
+          </div>
+          <div class="modal-body mx-3">
+            <div class="md-form mb-5">
+              <i class="fas fa-user prefix grey-text"></i>
+              <input type="text" id="orangeForm-name" class="form-control validate">
+              <label data-error="wrong" data-success="right" for="orangeForm-name">Username</label>
+            </div>
+
+            <div class="md-form mb-4">
+              <i class="fas fa-lock prefix grey-text"></i>
+              <input type="password" id="orangeForm-pass" class="form-control validate">
+              <label data-error="wrong" data-success="right" for="orangeForm-pass">Password</label>
+            </div>
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-deep-orange" style="background-color:lightgray;">Log in</button>
           </div>
         </div>
       </div>
@@ -152,6 +220,7 @@
     <script src="./Assets/JS/Script.js" type="text/javascript"></script>
     <script src="./Assets/JS/Loop.js" type="text/javascript"></script>
     <script src="./Assets/JS/Tooltips.js" type="text/javascript"></script>
+    <script src="./Assets/JS/Enemy.js" type="text/javascript"></script>
 
 
 

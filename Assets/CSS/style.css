@@ -81,6 +81,28 @@ p.consoleOld {
 
 }
 
+
+#EnemyHealthBar{
+
+  margin-bottom: 5px;
+  -webkit-appearance: none;
+  appearance: none;
+  height:5px;
+
+}
+
+#EnemyHealthBar[value]::-webkit-progress-bar {
+  background-color: gray;
+}
+
+#EnemyHealthBar[value]::-webkit-progress-value {
+  background-color: white;
+}
+
+#EnemyContent{
+  display:none;
+}
+
 .infoDiv {
 
     top: 8;
@@ -100,6 +122,8 @@ p.consoleOld {
 
   width:100%;
   text-align: center;
+  justify-content: center;
+  align-items: center;
 
 }
 

@@ -11,15 +11,35 @@ let element = {
    fireResText: document.getElementById("FireRes"),
    coldResText: document.getElementById("ColdRes"),
    lightResText: document.getElementById("LightRes"),
+   enemyCurrentHealthText: document.getElementById("EnemyCurrentHealth"),
+   enemyMaxHealthText: document.getElementById("EnemyMaxHealth"),
+   enemyNameText: document.getElementById("EnemyName"),
+
 
 
    startCombatBtn: document.getElementById("StartCombat"),
 
 
-   activeEnemyImg: document.getElementById("ActiveEnemy"),
+   activeEnemyImg: document.getElementById("ActiveEnemyImg"),
 
 
-   zoneButton: document.getElementsByClassName('ZoneButton')
+   zoneButton: document.getElementsByClassName('ZoneButton'),
+
+
+   enemyHealthBar: document.getElementById("EnemyHealthBar"),
+
+
+   enemyContent: document.getElementById("EnemyContent")
+
+
+}
+
+
+let flag = {
+
+
+  zoneOne: 0,
+  zoneTwo: 0
 
 
 }
