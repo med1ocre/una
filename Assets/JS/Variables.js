@@ -14,6 +14,12 @@ let element = {
    enemyCurrentHealthText: document.getElementById("EnemyCurrentHealth"),
    enemyMaxHealthText: document.getElementById("EnemyMaxHealth"),
    enemyNameText: document.getElementById("EnemyName"),
+   readout1Text: document.getElementById("readout1"),
+   readout2Text: document.getElementById("readout2"),
+   readout3Text: document.getElementById("readout3"),
+   readout4Text: document.getElementById("readout4"),
+   readout5Text: document.getElementById("readout5"),
+
 
 
 
@@ -29,7 +35,9 @@ let element = {
    enemyHealthBar: document.getElementById("EnemyHealthBar"),
 
 
-   enemyContent: document.getElementById("EnemyContent")
+   enemyContent: document.getElementById("EnemyContent"),
+   enemyContentStats: document.getElementById("EnemyContentStats"),
+   loader: document.getElementById("Loader"),
 
 
 }

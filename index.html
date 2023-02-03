@@ -79,7 +79,7 @@
               Chance to Evade: <span id="ChanceToEvade"></span>%
 
 
-
+              <br>
             </p>
 
           </div>
@@ -102,7 +102,7 @@
   				<b>Battle</b>
   				<br>
   				<hr>
-  				<p class="battletext noselect centertext" style="text-align:center;vertical-align:center;">
+  				<p class="battletext noselect" style="text-align:center;vertical-align:center;">
 
             <button id="StartCombat"  style="width:100%;border:none;" onclick="toggleZones()">Zones</button>
 
@@ -112,17 +112,52 @@
             <button id="ZoneFour" class="ZoneButton" onclick="startCombat()" disabled>&#8547;</button>
             <button id="ZoneFive" class="ZoneButton" onclick="startCombat()" disabled>&#8548;</button>
 
-            <img id="ActiveEnemyImg" src=""></img>
-
-            <div class="centertext" id="EnemyContent">
-              <span id="EnemyName"></span>
-              <br>
-              <progress id="EnemyHealthBar" value="5" max="10"></progress>
-              <br>
-              <span id="EnemyCurrentHealth"></span>/<span id="EnemyMaxHealth"></span>
+            <div class="centertext">
+              <div class="lds-ring" style="display:none;" id="Loader"><div></div><div></div><div></div><div></div></div>
             </div>
 
+            <div class="centertext">
+              <img id="ActiveEnemyImg" src=""></img>
+            </div>
+
+          </p>
+
+          <div class="centertext" id="EnemyContent">
+            <span id="EnemyName"></span>
             <br>
+            <progress id="EnemyHealthBar" value="5" max="10"></progress>
+            <br>
+            <span id="EnemyCurrentHealth"></span>/<span id="EnemyMaxHealth"></span>
+          </div>
+
+          <div id="EnemyContentStats">
+          <div class="HalfWidth">
+            <div class="FixedPosition">
+              <p class="playertext">
+
+                DPS: <span id="DPS"></span>
+                <br>
+                Chance To Hit: <span id="ChanceToHit"></span>
+                <br>
+                Chance to Evade: <span id="ChanceToEvade"></span>%
+                <br>
+                Attacks per second: <span id="AttacksPerSecond"></span>
+                <br>
+
+              </p>
+            </div>
+
+          </div>
+
+          <div class="HalfWidth">
+            <p class="playertext" style="float:right;text-align:right;">
+              <span id="FireRes"></span>: Fire res
+              <br>
+              <span id="ColdRes"></span>: Cold res
+              <br>
+              <span id="LightRes"></span>: Light res<br><br><br><br><br><br><br>
+            </p>
+          </div>
 
 
 
