@@ -2,6 +2,7 @@ let element = {
 
    playerCurrentHealthText: document.getElementById("PlayerCurrentHealth"),
    playerTotalHealthText: document.getElementById("PlayerTotalHealth"),
+   playerRegenText: document.getElementById("PlayerRegen"),
    dpsText: document.getElementById("DPS"),
    chanceToHitText: document.getElementById("ChanceToHit"),
    enemyChanceToHitText: document.getElementById("EnemyChanceToHit"),

@@ -35,11 +35,12 @@ function getRandomFromArray(randomarray){
 function checkIfEnemyDead(){
 
   //set an interval of a couple sec after they die because js is annoyin
-    if(activeEnemy.currenthealth <= 0){
+    if(activeEnemy.currentHealth <= 0){
 
       checkIfEnemyDeadInterval = setInterval(function(){
 
         clearInterval(playerAttackInterval);
+        clearInterval(enemyAttackInterval);
         loadEnemy();
 
         clearInterval(checkIfEnemyDeadInterval);
@@ -48,6 +49,48 @@ function checkIfEnemyDead(){
 
     }
 
+
+}
+
+function checkIfPlayerDead(){
+
+  //set an interval of a couple sec after they die because js is annoyin
+    if(Player.currentHealth <= 0){
+
+      checkIfPlayerDeadInterval = setInterval(function(){
+
+        clearInterval(enemyAttackInterval);
+        clearInterval(playerAttackInterval);
+        clearInterval(checkIfPlayerDeadInterval);
+
+        Player.currentHealth = 0;
+        stopCombat();
+        DisplayMessage("You have Died!");
+
+        //Start regening health
+        regenPlayerHealth(Player.healthRegen);
+        element.playerRegenText.style.display = "inline-block";
+
+      }, 100);
+
+    }
+}
+
+function regenPlayerHealth(regenamount){
+
+  playerRegenInterval = setInterval(function(){
+
+    Player.currentHealth += regenamount;
+    element.playerCurrentHealthText.innerHTML = Player.currentHealth;
+
+    if(Player.currentHealth == Player.totalHealth){
+
+      clearInterval(playerRegenInterval);
+      element.playerRegenText.style.display = "none";
+
+    }
+
+  }, 1000);
 
 }
 
@@ -84,8 +127,6 @@ function updatePlayerStats(){
 
   Player.dps = "(" + Player.minimumHit + "-" + Player.maximumHit + ")";
 
-
-  element.playerCurrentHealthText.innerHTML = Player.currentHealth;
   element.dpsText.innerHTML = Player.dps;
   element.chanceToHitText.innerHTML = Player.chanceToHit;
   element.playerAttackIntervalText.innerHTML = Player.attackInterval + "s";
@@ -163,7 +204,7 @@ function spawnEnemy(){
       activeEnemy = Enemy.Slime
     }
 
-    activeEnemy.currenthealth = activeEnemy.maxhealth;
+    activeEnemy.currentHealth = activeEnemy.maxhealth;
 
   }
 
@@ -194,6 +235,7 @@ function spawnEnemy(){
 
   //After calculating, attack!
   attackEnemy();
+  enemyAttack();
 
 }
 
@@ -212,11 +254,11 @@ function attackEnemy(){
 
     if(hitroll <= Player.chanceToHit){
 
-      activeEnemy.currenthealth -= dmg;
+      activeEnemy.currentHealth -= dmg;
 
       //update healthbar
-      element.enemyCurrentHealthText.innerHTML = activeEnemy.currenthealth;
-      element.enemyHealthBar.value = activeEnemy.currenthealth;
+      element.enemyCurrentHealthText.innerHTML = activeEnemy.currentHealth;
+      element.enemyHealthBar.value = activeEnemy.currentHealth;
 
       //Check enemy health
       checkIfEnemyDead();
@@ -228,6 +270,37 @@ function attackEnemy(){
     }
 
   }, Player.attackInterval*1000);
+
+}
+
+function enemyAttack(){
+
+  enemyAttackInterval = setInterval(function(){
+
+    x = 0;
+    y = 100;
+    z = activeEnemy.chanceToHit;
+
+    dmg = getRandomInt(activeEnemy.minimumHit, activeEnemy.maximumHit);
+    hitroll = getRandomInt(x, y);
+
+
+    if(hitroll <= activeEnemy.chanceToHit){
+
+      Player.currentHealth -= dmg;
+
+      element.playerCurrentHealthText.innerHTML = Player.currentHealth;
+
+      //Check enemy health
+      checkIfPlayerDead();
+
+      DisplayMessage(activeEnemy.name + " hit you for " + dmg + " total damage!");
+
+    }else if (hitroll >= activeEnemy.chanceToHit) {
+      DisplayMessage("The enemy missed!");
+    }
+
+  }, activeEnemy.attackInterval*1000);
 
 }
 
@@ -243,5 +316,17 @@ function startCombat(){
         element.zoneButton[i].style.display = element.zoneButton[i].style.display == 'inline' ? 'none' : 'inline';
   }
 
+
+}
+
+function stopCombat(){
+
+  element.enemyContent.style.display = "none";
+  element.enemyContentStats.style.display = "none";
+  element.activeEnemyImg.style.display = "none";
+
+  for (var i = 0; i < element.zoneButton.length; i++) {
+        element.zoneButton[i].style.display = element.zoneButton[i].style.display == 'inline' ? 'none' : 'inline';
+  }
 
 }
