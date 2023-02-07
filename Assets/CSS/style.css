@@ -183,6 +183,36 @@ p.consoleOld {
   color:white;
 }
 
+.goldtext{
+  color:gold;
+}
+
+#goldicon{
+
+  position: relative;
+  bottom:2.5px;
+
+}
+
+#hearticon{
+
+  position: relative;
+  bottom: 2.5px;
+
+}
+
+#gold{
+
+  font-size: 1.2em;
+
+}
+
+#PlayerCurrentHealth{
+
+  font-size: 1.2em;
+
+}
+
 .HalfWidth{
 
   width:50%;

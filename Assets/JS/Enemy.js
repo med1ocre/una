@@ -14,7 +14,11 @@ let Enemy = {
     maxhealth: getRandomInt(10, 15),
     armor: getRandomInt(1, 5),
     evasionRating: getRandomInt(40, 50),
-    damage: getRandomInt(1, 3),
+    minimumHit: 1,
+    maximumHit: 3,
+    chanceToHit: 0,
+    accuracyRating: 10,
+    attackInterval: 1.5,
     src: "./Assets/Media/Art/Characters/Goblin.png"
 
   },
@@ -27,7 +31,11 @@ let Enemy = {
     maxhealth: getRandomInt(8, 13),
     armor: getRandomInt(1, 5),
     evasionRating: getRandomInt(40, 50),
-    damage: getRandomInt(1, 3),
+    minimumHit: 1,
+    maximumHit: 3,
+    chanceToHit: 0,
+    accuracyRating: 10,
+    attackInterval: 1.5,
     src: "./Assets/Media/Art/Characters/Bat.png"
 
   },
@@ -40,7 +48,11 @@ let Enemy = {
     maxhealth: getRandomInt(10, 15),
     armor: getRandomInt(1, 5),
     evasionRating: getRandomInt(40, 50),
-    damage: getRandomInt(1, 3),
+    minimumHit: 1,
+    maximumHit: 3,
+    chanceToHit: 0,
+    accuracyRating: 10,
+    attackInterval: 1.5,
     src: "./Assets/Media/Art/Characters/Slime.png"
 
   }

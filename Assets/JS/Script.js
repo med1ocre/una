@@ -70,9 +70,12 @@ function calculateChanceToHit(attackeraccuracy, defenderevasion){
 
   fracNum = 1;
 
-  finalnum = z.toFixed(2);
+  formattednum = z.toFixed(2);
 
-  Player.chanceToHit = (Math.floor((finalnum / fracNum) * 100));;
+  finalnum = (Math.floor((formattednum / fracNum) * 100));
+
+  return finalnum;
+
 
 }
 
@@ -83,19 +86,22 @@ function updatePlayerStats(){
 
 
   element.playerCurrentHealthText.innerHTML = Player.currentHealth;
-  element.playerTotalHealthText.innerHTML = Player.totalHealth;
   element.dpsText.innerHTML = Player.dps;
   element.chanceToHitText.innerHTML = Player.chanceToHit;
-  element.attacksPerSecondText.innerHTML = Player.attacksPerSecond;
+  element.playerAttackIntervalText.innerHTML = Player.attackInterval + "s";
   element.armorText.innerHTML = Player.armor;
   element.evasionRatingText.innerHTML = Player.evasionRating;
   element.chanceToEvadeText.innerHTML = Player.chanceToEvade;
-  element.fireResText.innerHTML = Player.fireRes;
-  element.coldResText.innerHTML = Player.coldRes;
-  element.lightResText.innerHTML = Player.lightRes;
-
 
 }
+
+function updateEnemyStats(){
+
+  element.enemyChanceToHitText.innerHTML = activeEnemy.chanceToHit;
+  element.enemyAttackIntervalText.innerHTML = activeEnemy.attackInterval + "s";
+
+}
+
 
 function selectZone(zone){
 
@@ -181,7 +187,10 @@ function spawnEnemy(){
 
 
   //After the enemy has been spawned we need to calculate the players chance to hit
-  calculateChanceToHit(Player.accuracyRating, activeEnemy.evasionRating);
+  Player.chanceToHit = calculateChanceToHit(Player.accuracyRating, activeEnemy.evasionRating);
+
+  //And also calculate the enemies stats aswell!
+  activeEnemy.chanceToHit = calculateChanceToHit(activeEnemy.accuracyRating, Player.evasionRating);
 
   //After calculating, attack!
   attackEnemy();
@@ -218,11 +227,11 @@ function attackEnemy(){
       DisplayMessage("Your attack missed!");
     }
 
-  }, Player.attacksPerSecond*2000);
+  }, Player.attackInterval*1000);
 
 }
 
-
+// Selectzone() > StartCombat() > LoadEnemy() > SpawnEnemy() > Attack()
 
 function startCombat(){
 

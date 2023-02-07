@@ -5,6 +5,7 @@ let mainInterval = setInterval(function(){
 
   //update player text
   updatePlayerStats();
+  updateEnemyStats();
 
 
-}, 50);
+}, 100);
