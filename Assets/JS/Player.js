@@ -1,10 +1,19 @@
 let Player = {
 
-  currentHealth: 10,
-  totalHealth: 10,
+  currentHealth: 50,
+  totalHealth: 50,
   healthRegen: 1,
 
-  coins: 0,
+  gold: 0,
+
+  shatteringDust: 1,
+  reformationDust: 0,
+  polishingDust: 0,
+
+  swordBaseAmount: 1,
+  armorBaseAmount: 0,
+  amuletBaseAmount: 0,
+
 
   dps: "",
   minimumHit: 1,

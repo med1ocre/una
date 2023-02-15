@@ -17,8 +17,9 @@ let Enemy = {
     minimumHit: 1,
     maximumHit: 3,
     chanceToHit: 0,
-    accuracyRating: 10,
+    accuracyRating: getRandomInt(10, 25),
     attackInterval: 2.25,
+    goldReward: getRandomInt(5, 8),
     src: "./Assets/Media/Art/Characters/Goblin.png"
 
   },
@@ -34,8 +35,9 @@ let Enemy = {
     minimumHit: 1,
     maximumHit: 3,
     chanceToHit: 0,
-    accuracyRating: 10,
+    accuracyRating: getRandomInt(10, 25),
     attackInterval: 1.5,
+    goldReward: getRandomInt(6, 9),
     src: "./Assets/Media/Art/Characters/Bat.png"
 
   },
@@ -51,8 +53,9 @@ let Enemy = {
     minimumHit: 1,
     maximumHit: 3,
     chanceToHit: 0,
-    accuracyRating: 10,
+    accuracyRating: getRandomInt(10, 25),
     attackInterval: 2.5,
+    goldReward: getRandomInt(5, 15),
     src: "./Assets/Media/Art/Characters/Slime.png"
 
   }

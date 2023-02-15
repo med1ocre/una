@@ -82,6 +82,96 @@ p.consoleOld {
 }
 
 
+#PlayerHealthBar{
+
+  width:92%;
+  margin-bottom: 5px;
+  -webkit-appearance: none;
+  appearance: none;
+  height:5px;
+
+}
+
+
+#PlayerHealthBar[value]::-webkit-progress-bar {
+  background-color: gray;
+}
+
+#PlayerHealthBar[value]::-webkit-progress-value {
+  background-color: pink;
+}
+
+#ShatteringDustBar{
+
+  width:92%;
+  margin-bottom: 5px;
+  -webkit-appearance: none;
+  appearance: none;
+  height:5px;
+
+}
+
+.dustbuttons{
+
+  display:none;
+
+}
+
+#ShatteringDustBar[value]::-webkit-progress-bar {
+  background-color: gray;
+}
+
+#ShatteringDustBar[value]::-webkit-progress-value {
+  background-color: #FFC331;
+}
+
+#ReformationDustBar{
+
+  width:92%;
+  margin-bottom: 5px;
+  -webkit-appearance: none;
+  appearance: none;
+  height:5px;
+
+}
+
+
+.bar p{
+
+  font-size: 0.7rem;
+  bottom:15px;
+  position:relative;
+  height:0px;
+
+}
+
+#ReformationDustBar[value]::-webkit-progress-bar {
+  background-color: gray;
+}
+
+#ReformationDustBar[value]::-webkit-progress-value {
+  background-color: #048BDD;
+}
+
+#PolishingDustBar{
+
+  width:92%;
+  margin-bottom: 5px;
+  -webkit-appearance: none;
+  appearance: none;
+  height:5px;
+
+}
+
+
+#PolishingDustBar[value]::-webkit-progress-bar {
+  background-color: gray;
+}
+
+#PolishingDustBar[value]::-webkit-progress-value {
+  background-color: #E8561A;
+}
+
 #EnemyHealthBar{
 
   margin-bottom: 5px;
@@ -166,10 +256,28 @@ p.consoleOld {
 
 .centertext{
 
-  width:100%;
+
   text-align: center;
   justify-content: center;
   align-items: center;
+
+}
+
+.inventoryslot{
+
+  padding-left: 0px;
+  padding-right: 0px;
+  border:1px solid lightgray;
+  border-radius:5px;
+  width:13%;
+  margin:2%;
+  height:2.5rem;
+
+}
+
+.floatright{
+
+  float:right;
 
 }
 
@@ -194,7 +302,7 @@ p.consoleOld {
 #goldicon{
 
   position: relative;
-  bottom:2.5px;
+  bottom:1.7px;
 
 }
 
@@ -207,7 +315,7 @@ p.consoleOld {
 
 #gold{
 
-  font-size: 1.2em;
+  font-size: 1em;
 
 }
 
@@ -248,6 +356,12 @@ p.consoleOld {
 }
 
 #secondColumn {
+    float: left;
+    width: 275px;
+    margin-left:10px;
+}
+
+#thirdColumn {
     float: left;
     width: 275px;
     margin-left:10px;

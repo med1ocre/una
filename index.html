@@ -48,31 +48,20 @@
 
       <div id="topDiv">
         <p class="topdivtext whitetext">
-          <br>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="pink" class="bi bi-heart-fill" viewBox="0 0 16 16" id="hearticon">
-            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-          </svg>
-          <span id="PlayerCurrentHealth">10</span>
-          <span id="PlayerRegen" style="display:none;" class="greentext">+1</span>
           &nbsp;
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-coin" viewBox="0 0 16 16" id="goldicon">
-            <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
-            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-            <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
-          </svg>
-          <span id="gold">0.00</span>
         </p>
 
   		</div>
-
   		<div id="firstColumn" class="whitetext">
 
   			<div id="playerDiv">
   				<b>Player</b>
+
   				<br>
   				<hr>
           <div class="HalfWidth">
             <p class="playertext">
+
               Damage:
               <br>
               Chance To Hit:
@@ -84,8 +73,8 @@
               <br>
               Evasion Rating:
 
-
               <br>
+
             </p>
 
           </div>
@@ -102,12 +91,32 @@
               <span id="Armor"></span>
               <br>
               <span id="EvasionRating"></span>
-              <br><br>
+
+
+
+              <br>
 
             </p>
           </div>
 
+          <div id="PlayerDivBottom">
+            <br>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="pink" class="bi bi-heart-fill" viewBox="0 0 16 16" id="hearticon">
+              <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+            </svg>
+
+            <progress id="PlayerHealthBar" value="10" max="10"></progress>
+            <span id="PlayerRegen" style="display:none;" class="greentext">+1</span>
+
+            <br>
+            <br>
+
+
+          </div>
+
   			</div>
+
+        <br>
 
         <div id="battleDiv">
   				<b>Battle</b>
@@ -115,7 +124,8 @@
   				<hr>
   				<p class="battletext noselect" style="text-align:center;vertical-align:center;">
 
-            <button id="StartCombat"  style="width:100%;border:none;" onclick="toggleZones()">Zones</button>
+            <button id="ZoneButton"  style="width:100%;border:none;" onclick="toggleZones()">Zones</button>
+            <button id="DungeonButton"  style="width:100%;border:none;margin-top:5px;" onclick="">Dungeons</button>
 
             <button id="ZoneOne" class="ZoneButton" style="" onclick="selectZone(1)" aria-describedby="tooltip">&#8544;</button>
             <button id="ZoneTwo" class="ZoneButton" onclick="startCombat()" disabled>&#8545;</button>
@@ -133,7 +143,7 @@
 
           </p>
 
-          <div class="centertext" id="EnemyContent">
+          <div class="centertext" id="EnemyContent" style="width:100%;">
             <span id="EnemyName"></span>
             <br>
             <progress id="EnemyHealthBar" value="5" max="10"></progress>
@@ -146,11 +156,9 @@
             <div class="FixedPosition">
               <p class="playertext">
 
-                Damage: <span id="DPS"></span>
+                Damage:
                 <br>
                 Chance To Hit:
-                <br>
-                Chance to Evade:
                 <br>
                 Attack Interval:
                 <br>
@@ -162,10 +170,9 @@
 
           <div class="HalfWidth">
             <p class="playertext" style="float:right;text-align:right;">
+              <span id="EnemyDPS"></span>
               <br>
               <span id="EnemyChanceToHit"></span>%
-              <br>
-              <span id="ChanceToEvade"></span>%
               <br>
               <span id="EnemyAttackInterval"></span><br><br><br><br><br><br><br>
             </p>
@@ -178,6 +185,185 @@
   		</div>
 
   	</div>
+
+    <div id="secondColumn" class="whitetext">
+      <div id="inventoryDiv">
+        <b>Inventory</b> (0/20)
+
+        <br>
+        <hr>
+        <div class="whitetext">
+
+          <div class="row centertext" style="justify-content:center; text-align:center;">
+            <div class="container centertext inventoryslot">
+
+            </div>
+            <div class="container centertext inventoryslot">
+
+            </div>
+            <div class="container centertext inventoryslot">
+
+            </div>
+            <div class="container centertext inventoryslot">
+
+            </div>
+            <div class="container centertext inventoryslot">
+
+            </div>
+          </div>
+
+          <div class="row centertext" style="justify-content:center; text-align:center;">
+            <div class="container centertext inventoryslot">
+
+            </div>
+            <div class="container centertext inventoryslot">
+
+            </div>
+            <div class="container centertext inventoryslot">
+
+            </div>
+            <div class="container centertext inventoryslot">
+
+            </div>
+            <div class="container centertext inventoryslot">
+
+            </div>
+          </div>
+
+          <div class="row centertext" style="justify-content:center; text-align:center;">
+            <div class="container centertext inventoryslot">
+
+            </div>
+            <div class="container centertext inventoryslot">
+
+            </div>
+            <div class="container centertext inventoryslot">
+
+            </div>
+            <div class="container centertext inventoryslot">
+
+            </div>
+            <div class="container centertext inventoryslot">
+
+            </div>
+          </div>
+
+          <div class="row centertext" style="justify-content:center; text-align:center;">
+            <div class="container centertext inventoryslot">
+
+            </div>
+            <div class="container centertext inventoryslot">
+
+            </div>
+            <div class="container centertext inventoryslot">
+
+            </div>
+            <div class="container centertext inventoryslot">
+
+            </div>
+            <div class="container centertext inventoryslot">
+
+            </div>
+          </div>
+
+          <div class="floatright" style="margin-top:10px; margin-right:15px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#CAA449" class="bi bi-coin" viewBox="0 0 16 16" id="goldicon">
+              <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+            </svg>
+
+            <span id="gold">0</span>
+            <br>
+          </div>
+
+          <br>
+          <br>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+    <div id="thirdColumn" class="whitetext">
+      <div id="resourceTrackerDiv" class="whitetext">
+
+				<b>Resources</b>
+
+				<br>
+				<hr>
+        <div class="whitetext">
+
+          <div class="centertext">
+            <div class="bar">
+              <progress id="ShatteringDustBar" value="0" max="100"></progress>
+              <p>Shattering Dust (<span id="shatteringdust">0</span>)</p>
+            </div>
+
+            <div class="bar">
+              <progress id="ReformationDustBar" value="0" max="100"></progress>
+              <p>Reformation Dust (<span id="reformationdust">0</span>)</p>
+            </div>
+
+            <div class="bar">
+              <progress id="PolishingDustBar" value="0" max="100"></progress>
+              <p>Polishing Dust (<span id="polishingdust">0</span>)</p>
+            </div>
+
+
+            <br>
+
+
+          </div>
+
+        </div>
+      </div>
+      <br>
+      <br>
+      <div id="resourceTrackerDiv" class="whitetext">
+
+				<b>Crafting</b>
+
+				<br>
+				<hr>
+        <div class="whitetext">
+
+          <div class="centertext">
+            
+            <img src="./Assets/Media/Art/Icons/SwordBase.png" style="height:10%; width: 10%;"></img> x <span id="swordbaseamount"></span> &nbsp;
+            <img src="./Assets/Media/Art/Icons/ArmorBase.png" style="height:10%; width: 10%;"></img> x <span id="armorbaseamount"></span> &nbsp;
+            <img src="./Assets/Media/Art/Icons/AmuletBase.png" style="height:10%; width: 10%;"></img> x <span id="amuletbaseamount"></span>
+            <br>
+            <br>
+            <button id="CraftSword" style="width:15%;border:none;font-size:0.8rem;" onclick="craftSword()">Craft</button>
+            &nbsp;
+            &nbsp;
+            <button id="CraftArmor" style="width:15%;border:none;font-size:0.8rem;" onclick="">Craft</button>
+            &nbsp;
+            &nbsp;
+            <button id="CraftAmulet" style="width:15%;border:none;font-size:0.8rem;" onclick="">Craft</button>
+            <br>
+            <br>
+          </div>
+          <div class="centertext dustbuttons">
+            <div class="wrapper">
+              <button id="ShatteringDustButton" style="width:32%;border:none;font-size:0.6rem;" onclick="craftShattering()">Shattering Dust</button>
+              <button id="ReformationDustButton" style="width:32%;border:none;font-size:0.6rem;" onclick="">Reformation Dust</button>
+              <button id="PolishingDustButton" style="width:32%;border:none;font-size:0.6rem;" onclick="">Polishing Dust</button>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
 
 
     <!-- Landing Page Modal -->
@@ -267,14 +453,18 @@
 
 
 
+
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script src="./Assets/JS/Variables.js" type="text/javascript"></script>
+    <script src="./Assets/JS/Prefix.js" type="text/javascript"></script>
+    <script src="./Assets/JS/Items.js" type="text/javascript"></script>
     <script src="./Assets/JS/Player.js" type="text/javascript"></script>
     <script src="./Assets/JS/Script.js" type="text/javascript"></script>
     <script src="./Assets/JS/Loop.js" type="text/javascript"></script>
     <script src="./Assets/JS/Tooltips.js" type="text/javascript"></script>
     <script src="./Assets/JS/Enemy.js" type="text/javascript"></script>
+    <script src="./Assets/JS/Inventory.js" type="text/javascript"></script>
 
 
 

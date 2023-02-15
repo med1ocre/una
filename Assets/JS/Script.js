@@ -17,7 +17,22 @@ function triggerModal(id){
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is exclusive and the minimum is inclusive
+}
+
+//Pick multiple random items from array
+function getRandom(arr, n) {
+    var result = new Array(n),
+        len = arr.length,
+        taken = new Array(len);
+    if (n > len)
+        throw new RangeError("getRandom: more elements taken than available");
+    while (n--) {
+        var x = Math.floor(Math.random() * len);
+        result[n] = arr[x in taken ? taken[x] : x];
+        taken[x] = --len in taken ? taken[len] : len;
+    }
+    return result;
 }
 
 function getRandomFromArray(randomarray){
@@ -32,12 +47,45 @@ function getRandomFromArray(randomarray){
 
 }
 
+
+
+function stopPlayerHealthRegen(){
+
+  if(typeof(playerRegenInterval) != 'undefined'){
+    clearInterval(playerRegenInterval);
+  }
+
+  element.playerRegenText.style.display = "none";
+
+}
+
+function dropGold(amount){
+
+  min = 0;
+  max = 100;
+
+  chance = getRandomInt(min, max);
+
+  if(chance >= 50){
+
+    Player.gold += activeEnemy.goldReward;
+
+    DisplayMessage("The enemy dropped " + activeEnemy.goldReward + " gold");
+
+  }
+
+}
+
 function checkIfEnemyDead(){
 
   //set an interval of a couple sec after they die because js is annoyin
     if(activeEnemy.currentHealth <= 0){
 
       checkIfEnemyDeadInterval = setInterval(function(){
+
+        dropGold(activeEnemy.goldReward);
+        dropDust();
+        dropBase();
 
         clearInterval(playerAttackInterval);
         clearInterval(enemyAttackInterval);
@@ -81,7 +129,6 @@ function regenPlayerHealth(regenamount){
   playerRegenInterval = setInterval(function(){
 
     Player.currentHealth += regenamount;
-    element.playerCurrentHealthText.innerHTML = Player.currentHealth;
 
     if(Player.currentHealth == Player.totalHealth){
 
@@ -111,6 +158,8 @@ function calculateChanceToHit(attackeraccuracy, defenderevasion){
   y = attackeraccuracy + Math.pow(x, 0.9);
   z = 1.25 * attackeraccuracy / y;
 
+
+  //
   fracNum = 1;
 
   formattednum = z.toFixed(2);
@@ -122,17 +171,102 @@ function calculateChanceToHit(attackeraccuracy, defenderevasion){
 
 }
 
+function dropBase(){
+
+  x = 0;
+  min = 0;
+  max = 100;
+
+  ranNum = getRandomInt(min, max);
+
+
+  if(ranNum >= 1 && ranNum <= 50){
+
+    x = 1;
+
+  }
+
+  if(x == 1){
+
+    ranNum = getRandomInt(min, max);
+
+    if(ranNum >= 1 && ranNum <= 32){
+
+      Player.armorBaseAmount += 1;
+
+    }else if(ranNum >= 33 && ranNum <= 66){
+
+      Player.swordBaseAmount += 1;
+
+    }else if(ranNum >= 67 && ranNum <= 100){
+
+      Player.amuletBaseAmount += 1;
+
+    }
+
+  }
+
+}
+
+function dropDust(){
+
+  x = 0;
+  min = 0;
+  max = 100;
+
+  ranNum = getRandomInt(min, max);
+
+
+  if(ranNum >= 1 && ranNum <= 40){
+
+    x = 1;
+
+  }
+
+  if(x == 1){
+
+    ranNum = getRandomInt(min, max);
+    if(ranNum == 1){
+
+      Player.polishingDust += 1;
+
+    }else if(ranNum >= 2 && ranNum <= 13){
+
+      Player.reformationDust += 1;
+
+    }else if(ranNum >= 14 && ranNum <= 100){
+
+      Player.shatteringDust += 1;
+
+    }
+
+  }
+
+}
 
 function updatePlayerStats(){
 
   Player.dps = "(" + Player.minimumHit + "-" + Player.maximumHit + ")";
 
+  element.shatteringDustBar.value = Player.shatteringDust;
+  element.reformationDustBar.value = Player.reformationDust;
+  element.polishingDustBar.value = Player.polishingDust;
+
+  element.swordBaseAmountText.innerHTML = Player.swordBaseAmount;
+  element.armorBaseAmountText.innerHTML = Player.armorBaseAmount;
+  element.amuletBaseAmountText.innerHTML = Player.amuletBaseAmount;
+
+  element.shatteringDustText.innerHTML = Player.shatteringDust;
+  element.reformationDustText.innerHTML = Player.reformationDust;
+  element.polishingDustText.innerHTML = Player.polishingDust;
+  element.playerHealthBar.value = Player.currentHealth;
+  element.playerHealthBar.max = Player.totalHealth;
+  element.goldText.innerHTML = Player.gold;
   element.dpsText.innerHTML = Player.dps;
   element.chanceToHitText.innerHTML = Player.chanceToHit;
   element.playerAttackIntervalText.innerHTML = Player.attackInterval + "s";
   element.armorText.innerHTML = Player.armor;
   element.evasionRatingText.innerHTML = Player.evasionRating;
-  element.chanceToEvadeText.innerHTML = Player.chanceToEvade;
 
 }
 
@@ -140,6 +274,7 @@ function updateEnemyStats(){
 
   element.enemyChanceToHitText.innerHTML = activeEnemy.chanceToHit;
   element.enemyAttackIntervalText.innerHTML = activeEnemy.attackInterval + "s";
+  element.enemyDpsText.innerHTML = "(" + activeEnemy.minimumHit + "-" + activeEnemy.maximumHit + ")";
 
 }
 
@@ -165,6 +300,7 @@ function toggleZones(){
 
   //Make start btn invisible
   element.startCombatBtn.style.display = "none";
+  element.startDungeonBtn.style.display = "none";
   //Make zone buttons visible
   for (var i = 0; i < element.zoneButton.length; i++) {
         element.zoneButton[i].style.display = element.zoneButton[i].style.display == 'inline' ? 'none' : 'inline';
@@ -289,8 +425,6 @@ function enemyAttack(){
 
       Player.currentHealth -= dmg;
 
-      element.playerCurrentHealthText.innerHTML = Player.currentHealth;
-
       //Check enemy health
       checkIfPlayerDead();
 
@@ -307,6 +441,8 @@ function enemyAttack(){
 // Selectzone() > StartCombat() > LoadEnemy() > SpawnEnemy() > Attack()
 
 function startCombat(){
+
+  stopPlayerHealthRegen();
 
   //Choose an enemy to fight
   loadEnemy();
@@ -327,6 +463,47 @@ function stopCombat(){
 
   for (var i = 0; i < element.zoneButton.length; i++) {
         element.zoneButton[i].style.display = element.zoneButton[i].style.display == 'inline' ? 'none' : 'inline';
+  }
+
+}
+
+function craftSword(){
+
+  if(Player.swordBaseAmount >= 1){
+
+    for (var i = 0; i < element.dustButtons.length; i++) {
+          element.dustButtons[i].style.display = element.dustButtons[i].style.display == 'inline' ? 'none' : 'inline';
+    }
+
+    flag.swordBaseSelected = true;
+
+
+
+  }else{
+
+    DisplayMessage("You need a sword base first!");
+
+  }
+
+}
+
+//the fuynction below is broken and will output and undefined, for some reason??? it was working 5 min before
+
+function craftShattering(){
+
+  if(Player.shatteringDust >= 1){
+
+
+    if(flag.swordBaseSelected == 'false'){
+
+      prefixAmount = getRandomInt(1,4);
+
+      randomPrefixes = getRandom(Prefix.Sword, prefixAmount);
+
+
+
+    }
+
   }
 
 }
